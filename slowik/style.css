@@ -1,0 +1,40 @@
+body {
+    background-color: black;
+    text-align: center;
+    color: white;
+}
+
+.slowik {
+    display: inline-block;
+    margin: 0;
+    border-radius: 100px;
+    padding: .3em 2.0em;
+    background: sandybrown;
+    color: #fff;
+}
+
+.zakoncz {
+    background-color: darkred;
+    border: black;
+    color: white;
+    padding: 8px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.kontynuuj {
+    background-color: green;
+    border: black;
+    color: white;
+    padding: 8px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
