@@ -1,5 +1,84 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['nick'])) {
+ header("Location: slowik_begin.php");
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Słowik</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div><h2 class="slowik">SŁOWIK</h2></div>
+
+<div> Program do nauki słówek</div>
+
+<FORM action method="get">
+    <?php
+    echo '<h1>';
+    echo "Witaj, ".$_SESSION['nick'];
+    echo '</h1>';
+    ?>
+
+    <p><span style="font-size: 200%; ">Wybierz talię słów:</span></p>
+
+    <div>
+        <label>
+            <input type="radio" name="deck" value="snouns.csv"
+        </label>
+        <label for="snouns">hiszpańskie rzeczowniki</label>
+    </div>
+
+    <div>
+        <label>
+            <input type="radio" name="deck" value="ganimals.csv">
+        </label>
+        <label for="ganimals">zwierzęta po niemiecku</label>
+    </div>
+
+    <p><span style="font-size: 200%; ">Co chcesz zrobić?:</span></p>
+    <div>
+        <label>
+            <input type="radio" name="choice" value="display" checked>
+        </label>
+        <label for="display">Wyświetl talię</label>
+    </div>
+
+    <div>
+        <label>
+            <input type="radio" name="choice" value="add">
+        </label>
+        <label for="add">Dodaj własną talię</label>
+    </div>
+
+    <div>
+        <label>
+            <input type="radio" name="choice" value="learn">
+        </label>
+        <label for="learn">Ucz się talii</label>
+    </div>
+
+    &nbsp;
+    <INPUT type="submit" value="Dalej">
+
+</FORM>
+
+<form action="slowik_begin.php" method="POST">
+    <input type="hidden" name="reset" value="reset">
+    <button class="zakoncz" type="submit" value="resetuj"> Resetuj wszystko</button>
+</form>
+
+</body>
+</html>
+
+<?php
+
 if (isset($_POST['zakoncz'])) {
     session_destroy();
 }
@@ -20,6 +99,7 @@ function deckTab($filename) //Plik - > Tablica
 
 function deckDisplay($tab) //Tablica -> Lista
 {
+    echo '<p><span style="font-size: 200%; ">Wybrana lista:</span></p>';
     foreach ($tab as $word) {
         echo $word[0];
         echo ".$word[1]" . "($word[2])";
@@ -68,66 +148,6 @@ if (isset($_GET['choice'])) //menu główne
 }
 
 echo '<br/>';
-
 ?>
 
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <title>Słowik</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-<div><h2 class="slowik">SŁOWIK</h2></div>
-
-<div> Program do nauki słówek</div>
-
-
-<FORM action method="get">
-
-    <p><span style="font-size: 200%; ">Wybierz talię słów:</span></p>
-
-    <div>
-        <label>
-            <input type="radio" name="deck" value="snouns.csv"
-        </label>
-        <label for="snouns">hiszpańskie rzeczowniki</label>
-    </div>
-
-    <div>
-        <label>
-            <input type="radio" name="deck" value="ganimals.csv">
-        </label>
-        <label for="ganimals">zwierzęta po niemiecku</label>
-    </div>
-
-    <p><span style="font-size: 200%; ">Co chcesz zrobić?:</span></p>
-    <div>
-        <label>
-            <input type="radio" name="choice" value="display" checked>
-        </label>
-        <label for="display">Wyświetl talię</label>
-    </div>
-
-    <div>
-        <label>
-            <input type="radio" name="choice" value="add">
-        </label>
-        <label for="add">Dodaj własną talię</label>
-    </div>
-
-    <div>
-        <label>
-            <input type="radio" name="choice" value="learn">
-        </label>
-        <label for="learn">Ucz się talii</label>
-    </div>
-
-    &nbsp;
-    <INPUT type="submit" value="Dalej">
-
-</FORM>
-
-</body>
-</html>

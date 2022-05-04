@@ -40,8 +40,9 @@ $learnTab = $_SESSION['deck'];
 
 if (isset($_GET['translation'])) {
     echo '<br/>';
-
-    if ($_GET['translation'] == $learnTab[$_SESSION['i']][2]) {
+    $userTranslation = strtolower($_GET['translation']); //ma działać niezależnie od wielkości liter
+    $correctTranslation = strtolower($learnTab[$_SESSION['i']][2]);
+    if ($userTranslation == $correctTranslation) {
         echo "Tłumaczenie poprawne!";
     } else {
         echo "Błąd. Prawidłowe tłumaczenie to ";
